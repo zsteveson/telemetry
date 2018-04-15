@@ -2,7 +2,7 @@
 
 $data = file_get_contents("php://input");
 $error = json_decode($data,true);
-$log .= $error['message'] . ' ';
+$log = $error['message'] . ' ';
 $log .= $error['url'] . ' ';
 $log .= $error['line'] . ' '; 
 $log .= $error['column'] . ' ';
