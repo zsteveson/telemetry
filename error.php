@@ -2,8 +2,12 @@
 
 $data = file_get_contents("php://input");
 $error = json_decode($data);
-
-$log = "$error['message'] $error['url'] $error['line'] $error['column'] $error['error']PHP_EOL";
+$log .= $error['message'] . ' ';
+$log .= $error['url'] . ' ';
+$log .= $error['line'] . ' '; 
+$log .= $error['column'] . ' ';
+$log .= $error['error'] . PHP_EOL;
 error_log("$log", 3, "/var/tmp/telemetryError.log");
+echo $log;
 
 ?>
