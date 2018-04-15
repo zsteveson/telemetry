@@ -1,7 +1,7 @@
 <?php
 header('Access-Control-Allow-Origin: *');
 $data = file_get_contents("php://input");
-$error = json_decode($data,true);
+$error = json_decode($data);
 print_r($error);
 $errorLog = $error['message'] . ' ';
 $errorLog .= $error['url'] . ' ';
