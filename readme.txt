@@ -1,0 +1,1 @@
+Minimal setup for logging client side JavaScript errors.
