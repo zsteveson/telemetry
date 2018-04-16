@@ -33,7 +33,7 @@ foreach ($data['resource'] as $resource) {
 
 
 function dns($timing) {
-	return $timing['domainLookupEnd'] - $timing['domainLookupStart']
+	return $timing['domainLookupEnd'] - $timing['domainLookupStart'];
 }
 
 function tcp($log) {

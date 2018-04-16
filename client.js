@@ -5,7 +5,7 @@ window.addEventListener("error", function (msg, url, lineNo, columnNo, error) {
   var log = { 'message' : msg, 'url' : url, 'line' : lineNo, 'column' : columnNo } 
 
   var xhr = new XMLHttpRequest();
-  xhr.open('POST', domain + 'telemetry/error.php',true);
+  xhr.open('POST', domain + '/telemetry/error.php',true);
   xhr.setRequestHeader('Content-Type', 'application/json');  
   xhr.send(JSON.stringify(log));
 
