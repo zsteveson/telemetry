@@ -13,7 +13,7 @@ foreach ($data['resource'] as $resourceTiming) {
 }
 
 function logNavigation($n) {
-  $log  = $data['location'] . ' ' dns($n) . ' ' . tcp($n) . ' ' . ttfb($n) . ' ' . transfer($n) . ' ';
+  $log  = $data['location'] . ' ' . dns($n) . ' ' . tcp($n) . ' ' . ttfb($n) . ' ' . transfer($n) . ' ';
   $log .= dominteractive($n) . ' ' . domcomplete($n) . ' ' . onload($n) . ' ' . totalPageLoadTime($n) . PHP_EOL;
   error_log($log, 3, "/var/tmp/navigationPerformance.log");
 }
