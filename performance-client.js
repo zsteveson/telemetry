@@ -9,4 +9,4 @@ xhr.open('POST', 'http://ec2-54-236-247-79.compute-1.amazonaws.com/telemetry/per
 xhr.setRequestHeader('Content-Type', 'application/json');
 xhr.send(JSON.stringify(log));
 
-}
+});
