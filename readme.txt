@@ -1,1 +1,1 @@
-Minimal setup for logging client side JavaScript errors.
+Prototype for logging client side JavaScript performance and logging.
