@@ -10,8 +10,9 @@ logNavigation($data['navigation']);
 
 $resourceTimings = $data['resource'];
 
-foreach ($resourceTimings as $resourceTiming) {
-  logResource($resourceTiming);
+print_R($resourceTimings);
+foreach ($resourceTimings as $r) {
+  logResource($r);
 }
 
 function logNavigation($n) {
