@@ -1,4 +1,4 @@
-var domain = 'http://ec2-54-236-247-79.compute-1.amazonaws.com';
+var domain = 'monitoring.zacharysteveson.com';
 
 window.addEventListener("error", function (e) {
   var errorLog = { 'message' : e['message'], 

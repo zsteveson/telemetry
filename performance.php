@@ -6,38 +6,45 @@ header('Access-Control-Allow-Headers: Content-Type');
 $data = file_get_contents("php://input");
 $data = json_decode($data,true);
 
-foreach ($data['navigation'] as $nav) {
-
-$dns  = $nav['domainLookupEnd'] - $nav['domainLookupStart'];
-$tcp  = $nav['connectEnd'] - $nav['connectStart'];
-$ttfb = $nav['responseStart'] - $nav['startTime'];
-$transfer = $nav['responseEnd'] - $nav['responseStart'];
-$ttdc = $nav['domComplete'] - $nav['domLoading'];
-$total = $nav['duration'];
-
-$log  = $nav['name']. ' ' . dns($nav) . ' ' . tcp($nav) . ' ' . $ttfb . ' ' . $transfer . ' ';
-$log .= $tti . ' '  . $ttdc . ' ' . $total . ' ' . PHP_EOL;
-
-error_log($log, 3, "/var/tmp/navigationPerformance.log");
+foreach ($data['navigation'] as $navigationTiming) {
+  logNavigation($navigationTiming);
 }
 
-foreach ($data['resource'] as $resource) {
-  $dns  = $resource['domainLookupEnd'] - $resource['domainLookupStart'];
-  $tcp  = $resource['connectEnd'] - $resource['connectStart'];
-  $ttfb = $resource['responseStart'] - $resource['startTime'];
-  $transfer = $resource['responseEnd'] - $resource['responseStart'];
-  $total = $resource['duration'];
-  $log = $resource['name'] . ' ' . $dns . ' ' . $tcp . ' ' . $ttfb . ' ' . $transfer . ' ' . $total . PHP_EOL;
-  error_log($log, 3, "/var/tmp/resourcePerformance.log");
+foreach ($data['resource'] as $resourceTiming) {
+  logResource($resourceTiming);
 }
 
+function logNavigation($n) {
+  $log .= dns($n) . ' ' . tcp($n) . ' ' . ttfb($n) . ' ' . transfer($n) . ' ' . domcomplete($n) . ' ' . total($n) . PHP_EOL;
+  error_log($log, 3, "/var/tmp/navigationPerformance.log");
+}
+
+function logResource($r) {
+  $log .= dns($n) . ' ' . tcp($n) . ' ' . ttfb($n) . ' ' . transfer($n) . ' ' . total($n) . PHP_EOL;
+}
 
 function dns($timing) {
 	return $timing['domainLookupEnd'] - $timing['domainLookupStart'];
 }
 
-function tcp($log) {
+function tcp($timing) {
 	return $timing['connectEnd'] - $timing['connectStart'];
+}
+
+function ttfb($timing) {
+	return $timing['responseStart'] - $timing['startTime'];
+}
+
+function transfer($timing) {
+	return $timing['responseEnd'] - $timing['responseStart'];
+}
+
+function domcomplete($timing) {
+	return $timing['domComplete'] - $timing['domLoading'];
+}
+
+function total($timing) {
+	return $timing['duration'];
 }
 
 ?>
