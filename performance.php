@@ -6,14 +6,14 @@ header('Access-Control-Allow-Headers: Content-Type');
 $data = file_get_contents("php://input");
 $data = json_decode($data,true);
 
-logNavigation($data['navigation']);
+logNavigation($data['location'], $data['navigation']);
 
 foreach ($data['resource'] as $resourceTiming) {
   logResource($resourceTiming);
 }
 
-function logNavigation($n) {
-  $log  = $data['location'] . ' ' . dns($n) . ' ' . tcp($n) . ' ' . ttfb($n) . ' ' . transfer($n) . ' ';
+function logNavigation($url, $n) {
+  $log  = $url . ' ' . dns($n) . ' ' . tcp($n) . ' ' . ttfb($n) . ' ' . transfer($n) . ' ';
   $log .= dominteractive($n) . ' ' . domcomplete($n) . ' ' . onload($n) . ' ' . totalPageLoadTime($n) . PHP_EOL;
   error_log($log, 3, "/var/tmp/navigationPerformance.log");
 }
