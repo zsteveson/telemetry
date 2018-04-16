@@ -6,7 +6,7 @@ header('Access-Control-Allow-Headers: Content-Type');
 $data = file_get_contents("php://input");
 $data = json_decode($data,true);
 
-$nav = $data['navigation'];
+foreach ($data['navigation'] as $nav) {
 
 $dns  = $nav['domainLookupEnd'] - $nav['domainLookupStart'];
 $tcp  = $nav['connectEnd'] - $nav['connectStart'];
@@ -19,9 +19,9 @@ $log  = $nav['name'] . ' ' . $dns . ' ' . $tcp . ' ' . $ttfb . ' ' . $transfer .
 $log .= $tti . ' '  . $ttdc . ' ' . $total . ' ' . PHP_EOL;
 
 error_log($log, 3, "/var/tmp/navigationPerformance.log");
+}
 
-
-foreach ($data['resource'] as $r) {
+foreach ($data['resource'] as $resource) {
   $dns  = $resource['domainLookupEnd'] - $resource['domainLookupStart'];
   $tcp  = $resource['connectEnd'] - $resource['connectStart'];
   $ttfb = $resource['responseStart'] - $resource['startTime'];
