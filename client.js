@@ -16,8 +16,10 @@ window.addEventListener("error", function (e) {
 
 window.addEventListener("load", function(){
 
-  var log = {'navigation' : window.performance.timing,
-             'resource' : window.performance.getEntriesByType('resource') };
+  var log = {'location' : window.location.href,
+             'navigation' : window.performance.timing,
+             'resource' : window.performance.getEntriesByType('resource') 
+             };
 
   var xhr = new XMLHttpRequest();
   xhr.open('POST', baseurl + 'performance.php',true);

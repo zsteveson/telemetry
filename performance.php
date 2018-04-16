@@ -8,21 +8,22 @@ $data = json_decode($data,true);
 
 logNavigation($data['navigation']);
 
-$resourceTimings = $data['resource'];
-
-print_R($resourceTimings);
-foreach ($resourceTimings as $r) {
-  logResource($r);
+foreach ($data['resource'] as $resourceTiming) {
+  logResource($resourceTiming);
 }
 
 function logNavigation($n) {
-  $log  = dns($n) . ' ' . tcp($n) . ' ' . ttfb($n) . ' ' . transfer($n) . ' ';
+  $log  = $data['location'] . ' ' dns($n) . ' ' . tcp($n) . ' ' . ttfb($n) . ' ' . transfer($n) . ' ';
   $log .= dominteractive($n) . ' ' . domcomplete($n) . ' ' . onload($n) . ' ' . totalPageLoadTime($n) . PHP_EOL;
   error_log($log, 3, "/var/tmp/navigationPerformance.log");
 }
 
 function logResource($r) {
-  $log = dns($r) . ' ' . tcp($r) . ' ' . ttfb($r) . ' ' . transfer($r) . ' ' . duration($r) . PHP_EOL;
+  $log = name($r) . ' ' . dns($r) . ' ' . tcp($r) . ' ' . ttfb($r) . ' ' . transfer($r) . ' ' . duration($r) . PHP_EOL;
+}
+
+function name($timing) {
+	return $timing['name'];
 }
 
 function dns($timing) {
