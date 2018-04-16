@@ -16,7 +16,7 @@ window.addEventListener("error", function (e) {
 
 window.addEventListener("load", function(){
 
-  var log = {'navigation' : window.performance.getEntriesByType('navigation'),
+  var log = {'navigation' : window.performance.timing,
              'resource' : window.performance.getEntriesByType('resource') };
 
   var xhr = new XMLHttpRequest();

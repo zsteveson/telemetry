@@ -15,12 +15,12 @@ foreach ($data['resource'] as $resourceTiming) {
 }
 
 function logNavigation($n) {
-  $log .= dns($n) . ' ' . tcp($n) . ' ' . ttfb($n) . ' ' . transfer($n) . ' ' . domcomplete($n) . ' ' . total($n) . PHP_EOL;
+  $log = dns($n) . ' ' . tcp($n) . ' ' . ttfb($n) . ' ' . transfer($n) . ' ' . domcomplete($n) . ' ' . total($n) . PHP_EOL;
   error_log($log, 3, "/var/tmp/navigationPerformance.log");
 }
 
 function logResource($r) {
-  $log .= dns($r) . ' ' . tcp($r) . ' ' . ttfb($r) . ' ' . transfer($r) . ' ' . total($r) . PHP_EOL;
+  $log = dns($r) . ' ' . tcp($r) . ' ' . ttfb($r) . ' ' . transfer($r) . ' ' . total($r) . PHP_EOL;
 }
 
 function dns($timing) {
