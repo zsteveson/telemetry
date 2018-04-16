@@ -4,7 +4,7 @@ header('Access-Control-Allow-Methods: POST');
 header('Access-Control-Allow-Headers: Content-Type');
 
 $data = file_get_contents("php://input");
-$logJavaScriptError(json_decode($data,true);)
+$logJavaScriptError(json_decode($data,true));
 
 function logJavaScriptError($e) {
 	error_log(format($e), 3, "/var/tmp/telemetry.log");
