@@ -8,7 +8,7 @@ $data = json_decode($data,true);
 
 logNavigation($data['navigation']);
 
-foreach ($data['resource'] as $resourceTiming) {
+foreach ($data['resource'] as $index => $resourceTiming) {
   logResource($resourceTiming);
 }
 
@@ -31,7 +31,7 @@ function tcp($timing) {
 }
 
 function ttfb($timing) {
-	return $timing['responseStart'] - $timing['startTime'];
+	return $timing['responseStart'] - $timing['requestStart'];
 }
 
 function transfer($timing) {
