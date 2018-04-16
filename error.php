@@ -7,7 +7,7 @@ $data = file_get_contents("php://input");
 logJavasScriptError(json_decode($data,true));
 
 function logJavasScriptError($error) {
-	error_log(formatError($error), 3, "/var/tmp/telemetry.log");
+	error_log(formatError($error), 3, "/var/tmp/jserrors.log");
 }
 
 function formatError($error) {
