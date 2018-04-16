@@ -12,7 +12,7 @@ $dns  = $nav['domainLookupEnd'] - $nav['domainLookupStart'];
 $tcp  = $nav['connectEnd'] - $nav['connectStart'];
 $ttfb = $nav['responseStart'] - $nav['startTime'];
 $transfer = $nav['responseEnd'] - $nav['responseStart'];
-$ttdc = $nav['domComplete' - $nav['domLoading'];
+$ttdc = $nav['domComplete'] - $nav['domLoading'];
 $total = $nav['duration'];
 
 $log  = $nav['name'] . ' ' . $dns . ' ' . $tcp . ' ' . $ttfb . ' ' . $transfer . ' ';
