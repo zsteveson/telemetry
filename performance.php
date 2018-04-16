@@ -6,9 +6,7 @@ header('Access-Control-Allow-Headers: Content-Type');
 $data = file_get_contents("php://input");
 $data = json_decode($data,true);
 
-foreach ($data['navigation'] as $navigationTiming) {
-  logNavigation($navigationTiming);
-}
+logNavigation($data['navigation']);
 
 foreach ($data['resource'] as $resourceTiming) {
   logResource($resourceTiming);
