@@ -20,7 +20,7 @@ function logNavigation($n) {
 }
 
 function logResource($r) {
-  $log .= dns($n) . ' ' . tcp($n) . ' ' . ttfb($n) . ' ' . transfer($n) . ' ' . total($n) . PHP_EOL;
+  $log .= dns($r) . ' ' . tcp($r) . ' ' . ttfb($r) . ' ' . transfer($r) . ' ' . total($r) . PHP_EOL;
 }
 
 function dns($timing) {
