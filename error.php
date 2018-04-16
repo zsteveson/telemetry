@@ -4,10 +4,13 @@ header('Access-Control-Allow-Methods: POST');
 header('Access-Control-Allow-Headers: Content-Type');
 
 $data = file_get_contents("php://input");
-$error = json_decode($data,true);
+$logJavaScriptError(json_decode($data,true);)
 
-$log = $error['message'] . ' ' . $error['url'] . ' ' . $error['line'] . ' ' . $error['column'] . PHP_EOL;
-error_log($log, 3, "/var/tmp/telemetry.log");
-echo $log
+function logJavaScriptError($e) {
+	error_log(format($e), 3, "/var/tmp/telemetry.log");
+}
+
+function format($error) {
+	return $e['message'] . ' ' . $e['url'] . ' ' . $e['line'] . ' ' . $e['column'] . PHP_EOL;
+}
 ?>
-

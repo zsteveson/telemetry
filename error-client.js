@@ -1,6 +1,5 @@
 window.onerror = function (msg, url, lineNo, columnNo, error) {
-  console.log(error);
-  console.log(JSON.stringify(error));
+	
   var log = { 'message' : msg, 'url' : url, 'line' : lineNo, 'column' : columnNo }     
   var xhr = new XMLHttpRequest();
 

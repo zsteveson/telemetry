@@ -15,7 +15,7 @@ $transfer = $nav['responseEnd'] - $nav['responseStart'];
 $ttdc = $nav['domComplete'] - $nav['domLoading'];
 $total = $nav['duration'];
 
-$log  = $nav['name'] . ' ' . $dns . ' ' . $tcp . ' ' . $ttfb . ' ' . $transfer . ' ';
+$log  = $nav['name']. ' ' . dns($nav) . ' ' . tcp($nav) . ' ' . $ttfb . ' ' . $transfer . ' ';
 $log .= $tti . ' '  . $ttdc . ' ' . $total . ' ' . PHP_EOL;
 
 error_log($log, 3, "/var/tmp/navigationPerformance.log");
@@ -29,6 +29,15 @@ foreach ($data['resource'] as $resource) {
   $total = $resource['duration'];
   $log = $resource['name'] . ' ' . $dns . ' ' . $tcp . ' ' . $ttfb . ' ' . $transfer . ' ' . $total . PHP_EOL;
   error_log($log, 3, "/var/tmp/resourcePerformance.log");
+}
+
+
+function dns($timing) {
+	return $timing['domainLookupEnd'] - $timing['domainLookupStart']
+}
+
+function tcp($log) {
+	return $timing['connectEnd'] - $timing['connectStart'];
 }
 
 ?>
