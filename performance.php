@@ -8,9 +8,9 @@ $data = json_decode($data,true);
 
 logNavigation($data['navigation']);
 
-print_R(gettype($data['resource']));
-print_R($data['resource']);
-foreach ($data['resource'] as $resourceTiming) {
+$resourceTimings = $data['resource'];
+
+foreach ($resourceTimings as $resourceTiming) {
   logResource($resourceTiming);
 }
 
