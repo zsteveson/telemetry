@@ -12,10 +12,10 @@ $dns  = $nav['domainLookupEnd'] - $nav['domainLookupStart'];
 $tcp  = $nav['connectEnd'] - $nav['connectStart'];
 $ttfb = $nav['responseStart'] - $nav['startTime'];
 $transfer = $nav['responseEnd'] - $nav['responseStart'];
-$ttdc = $nav['domComplete' - $nav['domLoading';
+$ttdc = $nav['domComplete' - $nav['domLoading'];
 $total = $nav['duration'];
 
-$log  = $resource['name'] . ' ' . $dns . ' ' . $tcp . ' ' . $ttfb . ' ' . $transfer . ' ';
+$log  = $nav['name'] . ' ' . $dns . ' ' . $tcp . ' ' . $ttfb . ' ' . $transfer . ' ';
 $log .= $tti . ' '  . $ttdc . ' ' . $total . ' ' . PHP_EOL;
 
 error_log($log, 3, "/var/tmp/navigationPerformance.log");
