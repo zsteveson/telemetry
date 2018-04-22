@@ -15,6 +15,8 @@ foreach ($data['resource'] as $resourceTiming) {
 function logNavigation($url, $n) {
   $log  = $url . ' ' . dns($n) . ' ' . tcp($n) . ' ' . ttfb($n) . ' ' . transfer($n) . ' ';
   $log .= dominteractive($n) . ' ' . domcomplete($n) . ' '  . totalPageLoadTime($n) . PHP_EOL;
+  $log = Array('this' => 5);
+  $log = json_encode($log);
   error_log($log, 3, "/var/tmp/pageperformance.log");
 }
 
