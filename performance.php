@@ -17,7 +17,7 @@ function logNavigation($url, $n) {
   $log .= dominteractive($n) . ' ' . domcomplete($n) . ' '  . totalPageLoadTime($n) . PHP_EOL;
   $log = Array('this' => 5);
   $log = json_encode($log);
-  error_log($log, 3, "/var/tmp/pageperformance.log");
+  error_log($log . PHP_EOL, 3, "/var/tmp/pageperformance.log");
 }
 
 function logResource($r) {
