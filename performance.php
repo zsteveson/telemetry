@@ -13,7 +13,7 @@ foreach ($data['resource'] as $resourceTiming) {
 }
 
 function logNavigation($url, $n) {
-  $nav = Array( 
+  $log = Array( 
   	'dns'   => dns($n),
   	'tcp'   => tcp($n),
   	'ttfb'	=> ttfb($n),
