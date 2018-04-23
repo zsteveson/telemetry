@@ -20,7 +20,7 @@ function logNavigation($url, $n) {
   	'transfer' => transfer($n),
   	'dominteractive' => dominteractive($n),
   	'domcomplete' => domcplete($n),
-  	'totalpageloadtime' => totalPageLoadTime($n);
+  	'totalpageloadtime' => totalPageLoadTime($n)
   );
   error_log(json_encode($log) . PHP_EOL, 3, "/var/tmp/pageperformance.log");
 }
