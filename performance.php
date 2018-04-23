@@ -19,7 +19,7 @@ function logNavigation($url, $n) {
   	'ttfb'	=> ttfb($n),
   	'transfer' => transfer($n),
   	'dominteractive' => dominteractive($n),
-  	'domcomplete' => domcplete($n),
+  	'domcomplete' => domcomplete($n),
   	'totalpageloadtime' => totalPageLoadTime($n),
   );
   error_log(json_encode($log) . PHP_EOL, 3, "/var/tmp/pageperformance.log");
