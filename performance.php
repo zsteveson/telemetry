@@ -8,7 +8,7 @@ $data = json_decode($data,true);
 
 logNavigation($data['location'], $data['navigation']);
 
-logResources($data['location'], $data['resources']);
+logResources($data['location'], $data['resource']);
 
 
 
