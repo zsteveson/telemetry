@@ -25,7 +25,7 @@ function logNavigation($data) {
 }
 
 function logResources($data) {
-  foreach ((array)$data['resource'] as $timing) {
+  foreach ($data['resource'] as $timing) {
     $log = Array( 
     'name'     => $timing['name'],
     'dns'      => $timing['domainLookupEnd'] - $timing['domainLookupStart'],
