@@ -18,8 +18,10 @@ function logNavigation($data) {
     'transfer' => $timing['responseEnd'] - $timing['responseStart'],
     'dominteractive' => $timing['domInteractive'] - $timing['domLoading'],
     'domcomplete' => $timing['domComplete'] - $timing['domInteractive'],
+     //Currently inaccurate because loadEventEnd is being sent as zero, I think beacause its still in progress
     'totalpageloadtime' =>$timing['loadEventEnd'] - $timing['navigationStart'],
-    'location' => $data['location']
+    'location' => $data['location'],
+    'type' => 'navigation'
   );
   error_log(json_encode($log) . PHP_EOL, 3, "/var/tmp/pageperformance.log");
 }
@@ -33,7 +35,8 @@ function logResources($data) {
     'ttfb'     => $timing['responseStart'] - $timing['requestStart'],
     'transfer' => $timing['responseEnd'] - $timing['responseStart'],
     'duration' => $timing['duration'],
-    'location' => $data['location']
+    'location' => $data['location'],
+    'type'     => 'resource'
   );
   error_log(json_encode($log) . PHP_EOL, 3, "/var/tmp/resourceperformance.log");
   }
