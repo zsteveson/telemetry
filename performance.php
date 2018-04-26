@@ -8,8 +8,10 @@ $data = json_decode($data,true);
 
 logNavigation($data['location'], $data['navigation']);
 
-foreach ($data['resource'] as $resourceTiming) {
-  logResource($resourceTiming);
+if ($data['resource']) {
+  foreach ($data['resource'] as $resourceTiming) {
+    logResource($resourceTiming);
+  }
 }
 
 function logNavigation($data) {
@@ -23,9 +25,8 @@ function logNavigation($data) {
   	'domcomplete' => $timing['domComplete'] - $timing['domInteractive'],
   	'totalpageloadtime' =>$timing['loadEventEnd'] - $timing['navigationStart'],
     'location' => $data['location'],
-
   );
-  error_log(json_encode($log . PHP_EOL, 3, "/var/tmp/pageperformance.log");
+  error_log(json_encode($log) . PHP_EOL, 3, "/var/tmp/pageperformance.log");
 }
 
 function logResource($timing) {
@@ -38,7 +39,7 @@ function logResource($timing) {
     'duration' => $timing['duration'],
     'location' => $data['location'],
   );
-  error_log($log . PHP_EOL, 3, "/var/tmp/resourceperformance.log");
+  error_log(json_encode($log) . PHP_EOL, 3, "/var/tmp/resourceperformance.log");
 }
 
 ?>
