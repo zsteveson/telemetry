@@ -24,7 +24,7 @@ function logNavigation($data) {
   	'dominteractive' => $timing['domInteractive'] - $timing['domLoading'],
   	'domcomplete' => $timing['domComplete'] - $timing['domInteractive'],
   	'totalpageloadtime' =>$timing['loadEventEnd'] - $timing['navigationStart'],
-    'location' => $data['location'],
+    'location' => $data['location']
   );
   error_log(json_encode($log) . PHP_EOL, 3, "/var/tmp/pageperformance.log");
 }
@@ -37,7 +37,7 @@ function logResource($timing) {
     'ttfb'     => $timing['responseStart'] - $timing['requestStart'],
     'transfer' => $timing['responseEnd'] - $timing['responseStart'],
     'duration' => $timing['duration'],
-    'location' => $data['location'],
+    'location' => $data['location']
   );
   error_log(json_encode($log) . PHP_EOL, 3, "/var/tmp/resourceperformance.log");
 }
