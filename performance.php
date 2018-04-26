@@ -30,7 +30,7 @@ function logNavigation($data) {
 }
 
 function logResource($data) {
-  $timing = $data['resource']
+  $timing = $data['resource'];
   $log = Array( 
     'name'     => $timing['name'],
     'dns'      => $timing['domainLookupEnd'] - $timing['domainLookupStart'],
