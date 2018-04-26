@@ -24,8 +24,8 @@ function logNavigation($data) {
   error_log(json_encode($log) . PHP_EOL, 3, "/var/tmp/pageperformance.log");
 }
 
-function logResources($data) {}
-  foreach ($data['resource'] as $timing) {
+function logResources($data) {
+  foreach ((array)$data['resource'] as $timing) {
     $log = Array( 
     'name'     => $timing['name'],
     'dns'      => $timing['domainLookupEnd'] - $timing['domainLookupStart'],
