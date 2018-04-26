@@ -8,11 +8,9 @@ $data = json_decode($data,true);
 
 logNavigation($data['location'], $data['navigation']);
 
-if ($data['resource']) {
-  foreach ($data['resource'] as $resourceTiming) {
-    logResource($resourceTiming);
-  }
-}
+logResources($data['location'], $data['resources']);
+
+
 
 function logNavigation($data) {
   $timing = $data['navigation'];
@@ -29,9 +27,9 @@ function logNavigation($data) {
   error_log(json_encode($log) . PHP_EOL, 3, "/var/tmp/pageperformance.log");
 }
 
-function logResource($data) {
-  $timing = $data['resource'];
-  $log = Array( 
+function logResources($data) {}
+  foreach ($data['resource'] as $timing) {
+    $log = Array( 
     'name'     => $timing['name'],
     'dns'      => $timing['domainLookupEnd'] - $timing['domainLookupStart'],
     'tcp'      => $timing['connectEnd'] - $timing['connectStart'],
