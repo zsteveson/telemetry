@@ -36,6 +36,7 @@ function logResources($data) {
     'location' => $data['location']
   );
   error_log(json_encode($log) . PHP_EOL, 3, "/var/tmp/resourceperformance.log");
+  }
 }
 
 ?>
