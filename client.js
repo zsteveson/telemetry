@@ -6,7 +6,6 @@ window.addEventListener("error", function (e) {
                    'line'    : e['lineno'], 
                    'column'  : e['colno'],
                    'location': window.location.href
-
                  };
 
   var xhr = new XMLHttpRequest();
