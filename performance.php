@@ -12,58 +12,33 @@ foreach ($data['resource'] as $resourceTiming) {
   logResource($resourceTiming);
 }
 
-function logNavigation($url, $n) {
+function logNavigation($data) {
+  $timing = $data['navigation']
   $log = Array( 
-  	'dns'   => dns($n),
-  	'tcp'   => tcp($n),
-  	'ttfb'	=> ttfb($n),
-  	'transfer' => transfer($n),
-  	'dominteractive' => dominteractive($n),
-  	'domcomplete' => domcomplete($n),
-  	'totalpageloadtime' => totalPageLoadTime($n),
+  	'dns'   => $timing['domainLookupEnd'] - $timing['domainLookupStart'],
+  	'tcp'   => $timing['connectEnd'] - $timing['connectStart'],
+  	'ttfb'	=> $timing['responseStart'] - $timing['requestStart'],
+  	'transfer' => $timing['responseEnd'] - $timing['responseStart'],
+  	'dominteractive' => $timing['domInteractive'] - $timing['domLoading'],
+  	'domcomplete' => $timing['domComplete'] - $timing['domInteractive'],
+  	'totalpageloadtime' =>$timing['loadEventEnd'] - $timing['navigationStart'],
+    'location' => $data['location']
+
   );
   error_log(json_encode($log) . PHP_EOL, 3, "/var/tmp/pageperformance.log");
 }
 
-function logResource($r) {
-  $log = name($r) . ' ' . dns($r) . ' ' . tcp($r) . ' ' . ttfb($r) . ' ' . transfer($r) . ' ' . duration($r) . PHP_EOL;
-  error_log($log, 3, "/var/tmp/resourceperformance.log");
-}
-
-function name($timing) {
-	return $timing['name'];
-}
-
-function dns($timing) {
-	return $timing['domainLookupEnd'] - $timing['domainLookupStart'];
-}
-
-function tcp($timing) {
-	return $timing['connectEnd'] - $timing['connectStart'];
-}
-
-function ttfb($timing) {
-	return $timing['responseStart'] - $timing['requestStart'];
-}
-
-function transfer($timing) {
-	return $timing['responseEnd'] - $timing['responseStart'];
-}
-
-function dominteractive($timing) {
-	return $timing['domInteractive'] - $timing['domLoading'];
-}
-
-function domcomplete($timing) {
-	return $timing['domComplete'] - $timing['domInteractive'];
-}
-
-function duration($timing) {
-	return $timing['duration'];
-}
-
-function totalPageLoadTime($timing) {
-	$timing['loadEventEnd'] - $timing['navigationStart'];
+function logResource($timing) {
+  $log = Array( 
+    'name'     => $timing['name'],
+    'dns'      => $timing['domainLookupEnd'] - $timing['domainLookupStart'],
+    'tcp'      => $timing['connectEnd'] - $timing['connectStart'],
+    'ttfb'     => $timing['responseStart'] - $timing['requestStart'],
+    'transfer' => $timing['responseEnd'] - $timing['responseStart'],
+    'duration' => $timing['duration'],
+    'location' => $data['location'],
+  );
+  error_log($log . PHP_EOL, 3, "/var/tmp/resourceperformance.log");
 }
 
 ?>

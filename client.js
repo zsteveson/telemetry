@@ -4,7 +4,9 @@ window.addEventListener("error", function (e) {
   var errorLog = { 'message' : e['message'], 
                    'url'     : e['filename'], 
                    'line'    : e['lineno'], 
-                   'column'  : e['colno']
+                   'column'  : e['colno'],
+                   'location': window.location.href
+
                  };
 
   var xhr = new XMLHttpRequest();
