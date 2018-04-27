@@ -41,5 +41,4 @@ function logResources($data) {
   error_log(json_encode($log) . PHP_EOL, 3, "/var/tmp/resourceperformance.log");
   }
 }
-
 ?>

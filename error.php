@@ -4,13 +4,17 @@ header('Access-Control-Allow-Methods: POST');
 header('Access-Control-Allow-Headers: Content-Type');
 
 $data = file_get_contents("php://input");
-logJavasScriptError(json_decode($data,true));
+$data = json_decode($data,true)
+logJavasScriptError($data);
 
 function logJavasScriptError($error) {
-	error_log(formatError($error), 3, "/var/tmp/jserrors.log");
+  $log = Array( 
+  'message' => $error['message'],
+  'url'     => $error['url']
+  'line'    => $error['line'],
+  'column'  => $error['column'],
+  'location'=> $error'location',
+  'type'    => 'jserror'
+  );
+  error_log(json_encode($log) . PHP_EOL, 3, "/var/tmp/jserrors.log");
 }
-
-function formatError($error) {
-	return $error['message'] . ' ' . $error['url'] . ' ' . $error['line'] . ' ' . $error['column'] . PHP_EOL;
-}
-?>
