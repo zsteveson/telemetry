@@ -13,7 +13,7 @@ function logJavasScriptError($error) {
   'url'     => $error['url']
   'line'    => $error['line'],
   'column'  => $error['column'],
-  'location'=> $error'location',
+  'location'=> $error['location'],
   'type'    => 'jserror'
   );
   error_log(json_encode($log) . PHP_EOL, 3, "/var/tmp/jserrors.log");
