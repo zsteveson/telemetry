@@ -10,7 +10,7 @@ logJavasScriptError($data);
 function logJavasScriptError($error) {
   $log = Array( 
   'message' => $error['message'],
-  'url'     => $error['url']
+  'url'     => $error['url'],
   'line'    => $error['line'],
   'column'  => $error['column'],
   'location'=> $error['location'],
