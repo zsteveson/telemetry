@@ -4,7 +4,7 @@ header('Access-Control-Allow-Methods: POST');
 header('Access-Control-Allow-Headers: Content-Type');
 
 $data = file_get_contents("php://input");
-$data = json_decode($data,true)
+$data = json_decode($data,true);
 logJavasScriptError($data);
 
 function logJavasScriptError($error) {
